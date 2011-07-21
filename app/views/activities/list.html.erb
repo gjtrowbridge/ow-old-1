@@ -1,0 +1,28 @@
+<% @page_title = "Activities List" %>
+
+<div class="activity list">
+  <h2>Activities</h2>
+  
+  <%= link_to("Add New Activity", {:action => 'new'}, :class => 'action new') %>
+
+  <div><%= pluralize(@activities.size, 'activity') %> found</div>
+  
+  <table class="listing" summary="activity list">
+    <tr class="header">
+      <th>Activity</th>
+      <th>Organization</th>
+      <th>Actions</th>
+    </tr>
+    <% @activities.each do |activity| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= activity.name %></td>
+      <td class="center"><%= activity.organization %></td>
+      <td class="actions">
+        <%= link_to("Show", {:action => 'show', :id => activity.id}, :class => 'action show') %>
+        <%= link_to("Edit", {:action => 'edit', :id => activity.id}, :class => 'action edit') %>
+        <%= link_to("Delete", {:action => 'delete', :id => activity.id}, :class => 'action delete') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

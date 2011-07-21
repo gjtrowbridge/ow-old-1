@@ -1,0 +1,27 @@
+<% @page_title = "Editing pricing for '#{@activity.name}'" %>
+
+<div class="activity cost list">
+  <h2><%= "Pricing for #{@activity.name} (#{@activity.organization})" %></h2>
+  
+	<div>
+		<h4>Format</h4>
+		<p>$<strong>[Dollar Amount]</strong> per <strong>[Unit Number] [Unit Name]</strong><p>
+		<h4>Examples</h4>
+		<p>$[50] per [3] [month]</p>
+		<p>$[10] per [1] [class]</p>
+		<% @costs.each do |cost| %>
+			<div>
+			<%= form_for(cost, :url => {:action => 'update', :activity_id => @activity.id, :id => cost.id}) do |c| %>
+				<%= render(:partial => 'cost_form', :locals => {:c => c}) %>
+				<%= submit_tag("Update Cost") %>
+			<% end %>
+			</div>
+		<% end %>
+		<div>	
+			<%= form_for(:new_cost, :url => {:action => 'create', :activity_id => @activity.id}) do |c| %>
+				<%= render(:partial => 'cost_form', :locals => {:c => c}) %>
+				<%= submit_tag("Create Cost") %>
+			<% end %>	
+		</div>
+	</div>
+</div>

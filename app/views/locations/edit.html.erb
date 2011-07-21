@@ -1,0 +1,22 @@
+<% @page_title = "Editing pricing for '#{@activity.name}'" %>
+
+<div class="activity location list">
+  <h2><%= "Pricing for #{@activity.name} (#{@activity.organization})" %></h2>
+  
+	<div>
+		<% @locations.each do |location| %>
+			<div>
+			<%= form_for(location, :url => {:action => 'update', :activity_id => @activity.id}) do |l| %>
+				<%= render(:partial => 'location_form', :locals => {:l => l}) %>
+				<%= submit_tag("Update location") %>
+			<% end %>
+			</div>
+		<% end %>
+		<div>	
+			<%= form_for(:new_location, :url => {:action => 'create', :activity_id => @activity.id}) do |l| %>
+				<%= render(:partial => 'location_form', :locals => {:l => l}) %>
+				<%= submit_tag("Create location") %>
+			<% end %>	
+		</div>
+	</div>
+</div>

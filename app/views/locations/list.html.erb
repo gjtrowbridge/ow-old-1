@@ -1,0 +1,26 @@
+<% @page_title = "Pricing For '#{@activity.name}'" %>
+
+<div class="activity location list">
+  <h2><%= "Pricing for #{@activity.name} (#{@activity.organization})" %></h2>
+  
+  <%= link_to("Add/Edit Locations", {:action => 'edit', :activity_id => @activity.id}, :class => 'action edit') %>
+
+  <div><%= pluralize(@locations.size, 'location') %> found</div>
+  
+  <table class="listing" summary="activity list">
+    <tr class="header">
+      <th>Address</th>
+      <th>City</th>
+      <th>Note</th>
+      <th>Actions</th>
+    </tr>
+    <% @locations.each do |location| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= location.address %></td>
+      <td><%= location.city %></td>
+      <td><%= location.note %></td>
+      <td><%= link_to("Delete", {:controller=> 'locations', :action => 'destroy', :id => location.id}, :class => 'action list') %>
+    </tr>
+    <% end %>
+  </table>
+</div>

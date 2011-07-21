@@ -1,0 +1,22 @@
+<% @page_title = "Pricing For '#{@activity.name}'" %>
+
+<div class="activity cost list">
+  <h2><%= "Pricing for #{@activity.name} (#{@activity.organization})" %></h2>
+  
+  <%= link_to("Add/Edit Costs", {:action => 'edit', :activity_id => @activity.id}, :class => 'action edit') %>
+
+  <div><%= pluralize(@costs.size, 'cost') %> found</div>
+  
+  <table class="listing" summary="activity list">
+    <tr class="header">
+      <th>Pricing Info</th>
+      <th>Actions</th>
+    </tr>
+    <% @costs.each do |cost| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= "$#{cost.dollar_amount} per #{cost.unit_number} #{cost.unit_name}" %></td>
+      <td><%= link_to("Delete", {:controller=> 'costs', :action => 'destroy', :id => cost.id}, :class => 'action list') %>
+    </tr>
+    <% end %>
+  </table>
+</div>
