@@ -28,7 +28,9 @@ class User < ActiveRecord::Base
 	end
 	
 	def self.create_activation_key(username="")
-		Digest::SHA2.hexdigest("This activation code was created for #{username} by the orange walrus at #{Time.now}.  Booyakashah x #{rand(500)} / #{rand(200)}}")
+		encrpyted_rand = Digest::SHA2.hexdigest(rand(1000).to_s)
+		encrypted_rand = Digest::SHA2.hexdigest(encrpyted_rand + rand(1000).to_s)
+		Digest::SHA2.hexdigest("This activation code was created for #{username} by the orange walrus at #{Time.now}.  Booyakashah x #{encrypted_rand + rand(1000).to_s}}")
 	end
 	
 	def self.hash_with_salt(password="", salt="")
