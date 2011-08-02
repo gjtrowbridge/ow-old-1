@@ -1,6 +1,6 @@
 class CostsController < ApplicationController
 
-	before_filter :confirm_logged_in, :except => [:list]
+	before_filter :authenticate_user!, :except => [:list]
 	before_filter :check_activity_ownership, :only => [:edit, :create]
 	before_filter :check_cost_ownership, :except => [:list, :edit, :create]
 	

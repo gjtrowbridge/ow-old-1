@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
 	
 	#Restricts access
-	before_filter :confirm_logged_in, :except => [:index, :list, :show]
+	before_filter :authenticate_user!, :except => [:index, :list, :show]
 	before_filter :check_activity_ownership, :except => [:index, :list, :show, :new, :create]
 	
 	#Defaults to the list method
