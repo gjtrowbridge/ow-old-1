@@ -16,7 +16,7 @@
 	
 	<h2 class="location">
 		<% if user_signed_in? %>
-			Logged in as '<%= session[:user][:username] %>'
+			Logged in as '<%= current_user.username %>'
 		<% else %>
 			You are not logged in.
 		<% end %>
