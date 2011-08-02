@@ -8,19 +8,15 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-<% if !flash[:notice].blank? %>
-  <div class="notice">
-    <%= flash[:notice] %>
-  </div>
- <% end %>
-<div id="wrap">
-	<%= render(:partial => 'shared/nav') %>
-	<div id="main">
-      
-      <div id="content">
-        <%= yield %>
-      </div>
-    </div>
-</div>
+	<%= render(:partial => 'shared/notices') %>
+	<div id="container">
+		<%= render(:partial => 'shared/nav') %>
+		<div id="main">
+	      
+	      <div id="content">
+	        <%= yield %>
+	      </div>
+	    </div>
+	</div>
 </body>
 </html>
