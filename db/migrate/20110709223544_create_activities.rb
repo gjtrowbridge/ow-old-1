@@ -3,9 +3,10 @@ class CreateActivities < ActiveRecord::Migration
     create_table :activities do |t|
 		t.string "name", :limit => 100, :null => false
 		t.string "organization", :limit => 255, :default => ''
-		t.text "description", :null => false
+		t.string "description", :limit => 255
 		t.timestamps
     end
+    add_index :activities, [:name, :organization], :unique => true
   end
 
   def self.down

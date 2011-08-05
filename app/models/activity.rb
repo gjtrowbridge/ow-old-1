@@ -5,8 +5,8 @@ class Activity < ActiveRecord::Base
 	validates :organization, :presence => true, :length => { :maximum => 255 }
 	validates_uniqueness_of :name, :scope => :organization
 	
-	validates :description, :presence => true
-	validates :how_to_sign_up, :presence => true
+	#validates :description, :presence => true
+	#validates :signup_instructions, :presence => true
 	
 	#Protects these from mass assignment
 	attr_protected :user_id

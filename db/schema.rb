@@ -13,15 +13,17 @@
 ActiveRecord::Schema.define(:version => 20110802222620) do
 
   create_table "activities", :force => true do |t|
-    t.string   "name",           :limit => 100,                 :null => false
-    t.string   "organization",                  :default => ""
-    t.text     "description",                                   :null => false
+    t.string   "name",                :limit => 100,                 :null => false
+    t.string   "organization",                       :default => ""
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",                                       :null => false
-    t.text     "how_to_sign_up"
+    t.integer  "user_id",                                            :null => false
+    t.string   "signup_instructions"
+    t.string   "requirements"
   end
 
+  add_index "activities", ["name", "organization"], :name => "index_activities_on_name_and_organization", :unique => true
   add_index "activities", ["user_id"], :name => "index_activities_on_user_id"
 
   create_table "costs", :force => true do |t|
@@ -38,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20110802222620) do
   create_table "locations", :force => true do |t|
     t.string   "address",     :null => false
     t.string   "city",        :null => false
-    t.text     "note"
+    t.string   "note"
     t.integer  "activity_id"
     t.datetime "created_at"
     t.datetime "updated_at"

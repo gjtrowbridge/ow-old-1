@@ -1,7 +1,7 @@
 
 <% @page_title = "Show Activity: #{@activity.name}" %>
 
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", activities_path, :class => 'back-link') %>
 
 <div class="activity show">
   <h2>Show Activity</h2>
@@ -25,7 +25,11 @@
     </tr>
     <tr>
       <th>How Do I Sign Up?</th>
-      <td><%= @activity.how_to_sign_up %></td>
+      <td><%= @activity.signup_instructions %></td>
+    </tr>
+    <tr>
+      <th>Requirements?</th>
+      <td><%= @activity.requirements %></td>
     </tr>
     <tr>
       <th>Created</th>
@@ -34,14 +38,6 @@
     <tr>
       <th>Updated</th>
       <td><%= @activity.updated_at %></td>
-    </tr>
-    <tr>
-      <th>Cost</th>
-      <td><%= link_to("Cost of #{@activity.name}", {:controller=> 'costs', :action => 'list', :activity_id => @activity.id}, :class => 'action list') %></td>
-    </tr>
-    <tr>
-      <th>Location</th>
-      <td><%= link_to("Locations(s) of #{@activity.name}", {:controller=> 'locations', :action => 'list', :activity_id => @activity.id}, :class => 'action list') %></td>
     </tr>
   </table>
   

@@ -3,23 +3,9 @@ class ApplicationController < ActionController::Base
 	
 	protected
 	
-	def confirm_logged_in
-		if session[:user_id] && session[:user_activated] == true
-			return true
-		elsif !session[:user_id]
-			flash[:notice] = NOT_LOGGED_IN_ERROR
-			redirect_to(:controller => 'users', :action => 'login')
-			return false
-		elsif session[:user_activated] == false
-			flash[:notice] = NOT_ACTIVATED_ERROR
-			redirect_to(:controller => 'activities', :action => 'list')
-			return false
-		end
-	end
-	
 	#returns false if the current user does not own the passed object, otherwise true
 	def user_owns_activity(activity)
-		if activity.user_id == session[:user_id] and !session[:user_id].blank?
+		if activity.user_id == current_user.id and !current_user.blank?
 			return true
 		else
 			return false

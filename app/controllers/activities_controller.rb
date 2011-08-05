@@ -45,10 +45,10 @@ class ActivitiesController < ApplicationController
 	#Processes a new activity creation request
 	def create
 		@activity = Activity.new(params[:activity])
-		@activity.user_id = session[:user_id]
+		@activity.user_id = current_user.id
 		if @activity.save
 			flash[:notice] = "The activity: \"#{@activity.name}\" was successfully created."
-			redirect_to(:controller => 'activities', :action => 'list')
+			redirect_to(@activity)
 		else
 			flash[:notice] = @activity.errors.full_messages
 			render('new')
@@ -80,7 +80,7 @@ class ActivitiesController < ApplicationController
 			return true
 		else
 			flash[:notice] = NOT_OWNER_ERROR
-			redirect_to(:controller=>'activities', :action => 'list')
+			redirect_to(activities_path)
 			return false
 		end
 	end

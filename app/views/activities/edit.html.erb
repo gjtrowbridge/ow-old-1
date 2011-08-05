@@ -1,16 +1,10 @@
-<% @page_title = "Edit Activity: #{@activity.name}" %>
-
-<%= link_to("<< Back to List", {:action => 'list'}, :class => 'back-link') %>
-
 <div class="activity edit">
-  <h2>Update Activity</h2>
+ 	<h2>Edit Activity</h2>
 
-  <%= form_for(:activity, :url => {:action => 'update', :id => @activity.id}) do |f| %>
-  
-  	<%= render(:partial => "form", :locals => {:f => f}) %>
-    <div class="form-buttons">
-      <%= submit_tag("Update Activity") %>
-    </div>
-    
-  <% end %>
+	<%= render :partial => 'form' %>
+	
+	<%= link_to 'Show', @activity %> |
+	<%= link_to 'Back', activities_path %>
+
 </div>
+

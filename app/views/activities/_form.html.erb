@@ -1,18 +1,37 @@
-<table summary="Activity form fields">
-  <tr>
-    <th><%= f.label :name %></th>
-    <td><%= f.text_field(:name) %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :organization %></th>
-    <td><%= f.text_field(:organization) %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :description %></th>
-    <td><%= f.text_area(:description) %></td>
-  </tr>
-  <tr>
-    <th><%= f.label :how_to_sign_up, "How do I sign up?" %></th>
-    <td><%= f.text_area(:how_to_sign_up) %></td>
-  </tr>
-</table>
+<%= form_for(@activity) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@activity.errors.count, "error") %> prohibited this activity from being saved:</h2>
+
+      <ul>
+      <% @activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :organization %><br />
+    <%= f.text_field :organization %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :requirements %><br />
+    <%= f.text_field :requirements %>
+  </div>
+  <div class="field">
+    <%= f.label :signup_instructions %><br />
+    <%= f.text_field :signup_instructions %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

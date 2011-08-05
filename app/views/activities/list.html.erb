@@ -3,7 +3,7 @@
 <div class="activity list">
   <h2>Activities</h2>
   
-  <%= link_to("Add New Activity", {:action => 'new'}, :class => 'action new') %>
+  <%= link_to("Add New Activity", new_activity_path, :class => 'action new') %>
 
   <div><%= pluralize(@activities.size, 'activity') %> found</div>
   
@@ -18,9 +18,9 @@
       <td><%= activity.name %></td>
       <td class="center"><%= activity.organization %></td>
       <td class="actions">
-        <%= link_to("Show", {:action => 'show', :id => activity.id}, :class => 'action show') %>
-        <%= link_to("Edit", {:action => 'edit', :id => activity.id}, :class => 'action edit') %>
-        <%= link_to("Delete", {:action => 'delete', :id => activity.id}, :class => 'action delete') %>
+        <%= link_to("More Info", activity, :class => 'action show') %>
+        <%= link_to("Edit", edit_activity_path(activity), :class => 'action show') %>
+        <%= link_to("Delete", activity, :method => :delete, :confirm => 'Are you sure?', :class => 'action show') %>
       </td>
     </tr>
     <% end %>

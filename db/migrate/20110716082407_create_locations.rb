@@ -3,7 +3,7 @@ class CreateLocations < ActiveRecord::Migration
     create_table :locations do |t|
 		t.string :address, :null => false
 		t.string :city, :null => false
-		t.text :note
+		t.string :note
 		t.references :activity
       	t.timestamps
     end
